@@ -1,0 +1,293 @@
+/* bg colors */
+
+.js-main-primary > section:nth-child(4) {
+    background-color: lighten(#9cbfc8, 15%);
+}
+.js-main-primary > section:nth-child(5) {
+    background-color: lighten(#5f5d5c, 55%);
+}
+.js-main-primary > section:nth-child(6) {
+    background-color: lighten(#e39626, 35%);
+}
+.js-main-primary > section:nth-child(7) {
+    background-color: lighten(#e9c168, 15%);
+}
+.js-main-primary > section:nth-child(8) {
+    background-color: lighten(#b85644, 35%);
+}
+.js-main-primary > section:nth-child(9) {
+    background-color: lighten(#7d6165, 40%);
+}
+.js-main-primary > section:nth-child(10) {
+    background-color: lighten(#9f8b78, 30%);
+}
+.js-main-primary > section:nth-child(11) {
+    background-color: lighten(#d0867b, 20%);
+}
+.js-main-primary > section:nth-child(12) {
+    background-color: lighten(#487f76, 50%);
+}
+
+/* remove preview stuff */
+#scWebEditRibbon, #scCrossPiece {
+    display: none;
+}
+/* place h1 and related over image */
+.js-main-primary {
+    position:relative;
+    
+   
+}
+.js-main-primary > section {
+  opacity:1;
+  transition: opacity 8s linear;
+  border-top: 1px solid magenta;
+  padding-top: 61px;
+  margin-bottom: 0;
+    overflow: hidden;
+}
+.js-main-primary > section:first-child {
+padding-top: 0;
+    }
+.js-main-primary > section.intersection-fade {
+    opacity:0;
+}
+.js-main-primary > section:nth-child(2) {
+    
+    position: fixed;
+    top: 60px;
+    max-width: 100%;
+    width: 100%;
+    z-index: 3;
+    background: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0.4) 75px, rgba(0,0,0,0.4));
+    padding-bottom: 75px;
+    padding-top: 0;
+}
+
+
+.js-main-primary > section, footer {
+  display: none;
+  
+}
+.js-main-primary > section:nth-child(2), .js-main-primary > section:first-child, .js-main-primary > section:nth-child(3) {
+    display: block;
+}
+
+.js-main-primary > section:nth-child(3) {
+    padding: 100px 0 50px;
+    z-index:2;
+    color: #fff;
+    background: rgba(0,0,0,0.8);
+    box-sizing: border-box;
+    
+    margin-bottom: 0;
+    
+    
+}
+.js-main-primary > section:nth-child(3) .rich-text {
+font-size: 1.5em;
+    line-height: 150%;
+}
+.js-main-primary > section:nth-child(2) .container__inner {
+    width:100%;
+    max-width: 990px;
+    margin: 0 auto;
+} 
+.page-title__title, .page-metadata {
+    color: #fff;
+}
+.container__col--bleed > .image-block {
+    height: calc(100vh - 61px);
+    position: relative;
+    overflow: hidden;
+}
+.js-main-primary > section:first-child .image-block__meta-wrapper {
+	display: none;
+
+}
+.js-main-primary > section:first-child .container__col--bleed > .image-block picture {
+    min-width: 100%;
+    margin-bottom: 14px;
+    min-height: calc(100vh - 61px);
+    width: auto;
+    position: fixed;
+    top: 61px;
+    display: block;
+    
+}
+
+.js-main-primary > section:first-child .container__col--bleed > .image-block img {
+      min-width: 100%;
+    height: calc(100vh - 61px);
+    margin-bottom: 0;
+    width: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+
+}
+
+.intersection-fixed {
+position: fixed;
+    top: 61px;
+    width: 100%;
+}
+
+.disable-scroll {
+	overflow: hidden;
+}
+
+/* grid */
+
+.grid-wrapper {
+	width: 100%;
+	padding-bottom: 80%;
+	position: relative;
+    counter-reset: grid-counter;
+}
+.grid-container {
+	position: absolute;
+	display: grid;
+	width: 100%;
+	height: 100%;
+	grid-template-columns: [a] auto [b] auto [c] auto [d] auto [e] auto;
+	grid-template-rows: auto auto auto auto;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+}
+.grid-item {
+	padding-bottom: 1px;
+    position: relative;
+}
+.grid-item.is-link:hover {
+	filter: brightness(0.8);
+    cursor:pointer;
+}
+.grid-item.is-link:before {
+	counter-increment: grid-counter;
+    content: counter(grid-counter);
+    position: absolute;
+    left:4px;
+    top: 2px;
+    font-size: 2em;
+    font-weight: bold;  
+}
+.grid-item img {
+	width:100%;
+}
+.a1 {
+    grid-column-start: a;
+    grid-column-end: b;
+    grid-row-start: 1;
+    /* autoprefixer: off */
+        grid-row-end: 2;
+}
+.a2 {
+    grid-column-start: a;
+    grid-column-end: b;
+    grid-row-start: 2;
+    /* autoprefixer: off */
+        grid-row-end: 3;
+}
+.a3 {
+    grid-column-start: a;
+    grid-column-end: b;
+    grid-row-start: 3;
+    /* autoprefixer: off */
+        grid-row-end: 4;
+}
+.a4 {
+    grid-column-start: a;
+    grid-column-end: b;
+    grid-row-start: 4;
+    /* autoprefixer: off */
+        grid-row-end: 5;
+}
+.b1 {
+    grid-column-start: b;
+    grid-column-end: c;
+    grid-row-start: 1;
+    /* autoprefixer: off */
+        grid-row-end: 2;
+}
+.b2 {
+    grid-column-start: b;
+    grid-column-end: d;
+    grid-row-start: 2;
+    /* autoprefixer: off */
+        grid-row-end: 4;
+    filter: brightness(1.25);
+}
+.b4 {
+    grid-column-start: b;
+    grid-column-end: c;
+    grid-row-start: 4;
+    /* autoprefixer: off */
+        grid-row-end: 5;
+}
+.c1 {
+    grid-column-start: c;
+    grid-column-end: d;
+    grid-row-start: 1;
+    /* autoprefixer: off */
+        grid-row-end: 2;
+}
+.c4 {
+    grid-column-start: c;
+    grid-column-end: d;
+    grid-row-start: 4;
+    /* autoprefixer: off */
+        grid-row-end: 5;
+}
+.d1 {
+    grid-column-start: d;
+    grid-column-end: d;
+    grid-row-start: 1;
+    /* autoprefixer: off */
+        grid-row-end: 1;
+}
+.d2 {
+    grid-column-start: d;
+    grid-column-end: e;
+    grid-row-start: 2;
+    /* autoprefixer: off */
+        grid-row-end: 3;
+}
+.d3 {
+    grid-column-start: d;
+    grid-column-end: e;
+    grid-row-start: 3;
+    /* autoprefixer: off */
+        grid-row-end: 4;
+}
+.d4 {
+    grid-column-start: d;
+    grid-column-end: e;
+    grid-row-start: 4;
+    /* autoprefixer: off */
+        grid-row-end: 5;
+}
+.e1 {
+    grid-column-start: e;
+    grid-row-start: 1;
+    /* autoprefixer: off */
+        grid-row-end: 2;
+}
+.e2 {
+    grid-column-start: e;
+    grid-row-start: 2;
+    /* autoprefixer: off */
+        grid-row-end: 3;
+}
+.e3 {
+    grid-column-start: e;
+    grid-row-start: 3;
+    /* autoprefixer: off */
+        grid-row-end: 4;
+}
+.e4 {
+    grid-column-start: e;
+    grid-row-start: 4;
+    /* autoprefixer: off */
+        grid-row-end: 5;
+}
