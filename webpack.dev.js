@@ -1,9 +1,9 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = env => { // module.exports is function now to pass in env variable from cli defined in package.json
     return merge(common(), {
@@ -15,52 +15,90 @@ module.exports = env => { // module.exports is function now to pass in env varia
         mode: 'development',
         module: {
             rules: [{
-                test: /\.scss$/,
-                //exclude: /exclude/,
-                use: [{
-                        loader: 'style-loader'
-                    }, {
-                        loader: 'css-loader',
-                        options: {
-                           // modules: true,
-                           // localIdentName: '[local]', // in dev mode hash not necessary to brak caches but incuding path
-                            // should avoid collisions of classes with same names
-                            sourceMap: true
+                    test: /\.js$/,
+                    exclude: [/node_modules/, /\.min\./, /vendor/],
+                    use: [{
+                            loader: 'babel-loader',
+                            /*options: {
+                                plugins: [DynamicImport]
+                            }*/
+                        },
+                        {
+                            loader: 'eslint-loader'
                         }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    }, {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    }, // any scss files to be excluded from renaming the classes
-                ]
-            }]
+                    ]
+                },
+                {
+                    test: /\.scss$/,
+                    //exclude: /exclude/,
+                    use: [{
+                            loader: 'style-loader'
+                        }, {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1,
+                                sourceMap: true
+
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                sourceMap: true,
+                                ident: 'postcss',
+                                plugins: (loader) => [
+                                    require('postcss-preset-env')({
+                                        autoprefixer: {
+                                            grid: true
+                                        }
+                                    })
+                                ]
+                            }
+                        }, {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        }, // any scss files to be excluded from renaming the classes
+                    ]
+                }
+            ]
         },
         plugins: [
-            
-            new HtmlWebpackPlugin({
+             new HtmlWebpackPlugin({
                 title: 'title title title',
                 template: './src/index.html',
             }),
-            new CopyWebpackPlugin([{
-                from: 'assets/**/*.*',
-                context: 'src'
-            },// {
-               // from: 'assets/**/*.*',
-               // context: 'src',
-               // ignore: ['assets/countries/*.*']
-            //}
-            ]),
+            
             new webpack.HotModuleReplacementPlugin(),
             new webpack.EnvironmentPlugin({
                 'NODE_ENV': env
-            })
+            }),
+            new CopyWebpackPlugin([{
+                    from: '-/**/*.*',
+                    context: 'src',
+                },
+                {
+                    from: '.nojekyll',
+                    context: 'src'
+                },
+                {
+                    from: 'media/**/*.*',
+                    context: 'src',
+                },
+                {
+                    from: 'assets/**/*.*',
+                    exclude: 'assets/Pew/css/',
+                    context: 'src',
+                }, {
+                    from: 'assets/Pew/css/*.*',
+                    context: 'src',
+                    transform(content, path) {
+                        console.log(content.toString());
+                        return content.toString().replace(/\/pew\//g,'/Pew/');
+                    }
+                }
+            ])
         ],
         output: {
             filename: '[name].js?v=[hash:6]',

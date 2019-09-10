@@ -1,0 +1,11 @@
+[submodule "submodules/griffin"]
+	path = submodules/griffin
+	url = git@github.com:pewtrusts/griffin.git
+    branch = v1
+[submodule "submodules/UTILS"]
+	path = submodules/UTILS
+	url = git@github.com:pewtrusts/UTILS.git
+    branch = v2
+[submodule "submodules/laxxx"]
+	path = submodules/laxxx
+	url = git@github.com:pewtrusts/laxxx.git
